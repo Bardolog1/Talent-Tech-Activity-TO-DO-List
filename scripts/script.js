@@ -1,90 +1,52 @@
+
 const inputTODO = document.querySelector("#toDoInput");
 const toDoList = document.querySelector("#toDoList");
 inputTODO.addEventListener("keypress", newTaskEnter);
 
 loadTasks();
 updateCounter();
+validateTask();
 
+
+/* Initial Functions */
 
 function loadTasks() {
   const tasks = JSON.parse(localStorage.getItem("tasks"));
   if (tasks) {
     for (var task in tasks) {
       createElements(task, tasks[task]);
+      
+    }
+  }  
+}
+
+function validateTask() {
+  if (toDoList.childElementCount <= 0) {
+    createVoidElement();
+  }else{
+    const voidElement = document.querySelector(".voidElement");
+    if (voidElement) {
+      toDoList.removeChild(voidElement);
     }
   }
 }
 
-tippy('.addTaskBtn', {
-  content: 'Add Task',
-  inertia: true,
-});
-tippy('.filterAll', {
-  content: 'Find All Tasks',
-  inertia: true,
-});
-tippy('.filterActive', {
-  content: 'Find Not Completed Tasks',
-  inertia: true,
-});
-tippy('.filterCompleted', {
-  content: 'Find Completed Tasks',
-  inertia: true,
-});
-tippy('.clearCompleted', {
-  content: 'Delete Completed Tasks',
-  inertia: true,
-});
-tippy('.clearAll', {
-  content: 'Delete All Tasks',
-  inertia: true,
-});
-tippy('.save', {
-  content: 'Save Tasks in Local Storage',
-  inertia: true,
-});
-tippy('#counterAll', {
-  content: 'All Tasks are: ' + countAllTasks(),
-  inertia: true,
-});
-tippy('#counterActive', {
-  content: 'Not Completed Tasks are: ' + countActiveTasks(),
-  inertia: true,
-});
-tippy('#counterCheck', {
-  content: 'Completed Tasks are: ' + countCompletedTasks(),
-  inertia: true,
-});
+function updateCounter() {
+  document.querySelector("#counterAll").querySelector("span").innerText = countAllTasks();
+  document.querySelector("#counterActive").querySelector("span").innerText = countActiveTasks();
+  document.querySelector("#counterCheck").querySelector("span").innerText = countCompletedTasks();
 
-tippy('.check', {
-  content: 'Mark as Completed',
-  inertia: true,
-});
-
-tippy('.remove', {
-  content: 'Delete Task',
-  inertia: true,
-});
+}
 
 
 
-function newTask() {
-  var taskText = inputTODO.value;
+/* Create Elements */
 
-  if (
-    taskText === "" ||
-    taskText === null ||
-    taskText === undefined ||
-    taskText === " "
-  ) {
-    swal("Error!", "Task input is empty", "error");
-    return;
-  }
-  createElements(taskText);
-  inputTODO.value = "";
-  swal("Good job!", "Task is Added!", "success");
-  saveTasks();
-
+function createVoidElement() {
+  const voidElement = document.createElement("div");
+  voidElement.classList.add("voidElement");
+  voidElement.innerText = "No Tasks Found!";
+  toDoList.appendChild(voidElement);
 }
 
 function createElements(text, completed = false) {
@@ -111,6 +73,25 @@ function createElements(text, completed = false) {
     taskElement.classList.add("taskCompleted");
   }
   toDoList.appendChild(taskElement);
+}
+
+/* Task Management */
+
+function newTask() {
+  var taskText = inputTODO.value;
+  if (
+    taskText === "" ||
+    taskText === null ||
+    taskText === undefined ||
+    taskText === " "
+  ) {
+    swal("Error!", "Task input is empty", "error");
+    return;
+  }
+  createElements(taskText);
+  inputTODO.value = "";
+  swal("Good job!", "Task is Added!", "success");
+  saveTasks();
 }
 
 function newTaskEnter(event) {
@@ -153,6 +134,8 @@ function removeTask(event) {
     }
   });
 }
+
+/* Filter Tasks  & Masive Delete */
 
 function clearAll() {
   swal({
@@ -225,6 +208,9 @@ function filterAll() {
   });
 }
 
+
+/* Save Tasks in Local Storage */
+
 function saveTasks() {
   var tasks = document.querySelectorAll("li");
   const tasksObject = {};
@@ -235,12 +221,15 @@ function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasksObject));
   console.log(tasksObject);
   updateCounter();
+  validateTask();
 }
 
 function save() {
   saveTasks();
   swal("Good job!", "Tasks are saved in Local Storage!", "success");
 }
+
+/* Counter Functions */
 
 
 function countAllTasks() {
@@ -271,9 +260,3 @@ function countCompletedTasks() {
 }
 
 
-function updateCounter() {
-  document.querySelector("#counterAll").querySelector("span").innerText = countAllTasks();
-  document.querySelector("#counterActive").querySelector("span").innerText = countActiveTasks();
-  document.querySelector("#counterCheck").querySelector("span").innerText = countCompletedTasks();
-
-}

@@ -1,54 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TO DO List</title>
-  <script src="https://kit.fontawesome.com/cdf16c8d4e.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="https://unpkg.com/@popperjs/core@2"></script>
-  <script src="https://unpkg.com/tippy.js@6"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TO DO List</title>
+    <script
+      src="https://kit.fontawesome.com/cdf16c8d4e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+    <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tippy.js@6/animations/scale.css"
+    />
 
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>TO DO List</h1>
+      <input type="text" id="toDoInput" placeholder="Add New Task" />
+      <button class="addTaskBtn" onclick="newTask()">
+        <i class="fa-solid fa-plus"></i>
+      </button>
 
+      <div class="filter">
+        <button class="filterAll" onclick="filterAll()">All</button>
+        <button class="filterActive" onclick="filterActive()">Active</button>
+        <button class="filterCompleted" onclick="filterCompleted()">
+          Completed
+        </button>
+        <button class="clearCompleted" onclick="clearCompleted()">
+          Clear Completed
+        </button>
+        <button class="clearAll" onclick="clearAll()">Clear All</button>
 
-  <div class="container">
-    <h1>TO DO List</h1>
-    <input type="text" id="toDoInput" placeholder="Add New Task">
-    <button class="addTaskBtn" onclick="newTask()"><i class="fa-solid fa-plus"></i></button>
-
-    <div class="filter">
-      <button class="filterAll" onclick="filterAll()">All</button>
-      <button class="filterActive" onclick="filterActive()">Active</button>
-      <button class="filterCompleted" onclick="filterCompleted()">Completed</button>
-      <button class="clearCompleted" onclick="clearCompleted()">Clear Completed</button>
-      <button class="clearAll" onclick="clearAll()">Clear All</button>
-      
-      <!-- LocalStorage -->
-      <button class="save" onclick="save()">Save</button>
-      
-    </div>
-    <div class="counters">
-      <div class="counter counterAll" >
-        <p id="counterAll"><span>0</span> 🗃️</p>
+        <!-- LocalStorage -->
+        <button class="save" onclick="save()">Save</button>
       </div>
-      <div class="counter counterActive">
-        <p id="counterActive"><span>0</span> 📌</p>
+      <div class="counters">
+        <div class="counter counterAll">
+          <p id="counterAll"><span>0</span> 🗃️</p>
+        </div>
+        <div class="counter counterActive">
+          <p id="counterActive"><span>0</span> 📌</p>
+        </div>
+        <div class="counter counterCheck">
+          <p id="counterCheck"><span>0</span> ✔️</p>
+        </div>
       </div>
-      <div class="counter counterCheck">
-        <p id="counterCheck"><span>0</span> ✔️</p>
-      </div>
-    
-    </div>
-    
-    <div class="toDoContainer">
-      <ul id="toDoList"></ul>
-    </div>
-    
-  </div>
 
-  <script src="script.js"></script>
-</body>
+      <div class="toDoContainer">
+        <ul id="toDoList"></ul>
+      </div>
+    </div>
+
+    <script src="scripts/script.js"></script>
+    <script type="module" src="scripts/tooltips.js"></script>
+  </body>
 </html>
