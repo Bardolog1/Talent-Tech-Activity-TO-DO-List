@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
+body {
+  font-family: "Gaegu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  background-color: #d5d1e0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 0 40px;
+}
+
+h1 {
+  text-align: center;
+  font-weight: 600;
+}
+
+input[type="text"] {
+  font-size: 20px;    
+  width: 80%;
+  height: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  border: none;
+  border-radius: 50px;
+  background: #d5d1e0;
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  animation: shake 0.5s;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(10px);
+  }
+
+  50% {
+    transform: translateX(-10px);
+  }
+
+  75% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.addTaskBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #e4e0f0, #c0bcca);
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.addTaskBtn:hover {
+  transform: scale(1.1);
+}
+
+.addTaskBtn:active {
+  border-radius: 50px;
+  background: linear-gradient(45deg, #c0bcca, #e4e0f0);
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+button {
+  padding: 10px;
+  border-radius: 20px;
+
+  background: #d5d1e0;
+  box-shadow: 20px -20px 69px #b5b2be,
+    -20px 20px 69px #f5f0ff;
+  background: linear-gradient(45deg, #e4e0f0, #c0bcca);
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  border-radius: 20px;
+  background: #d5d1e0;
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+button:active {
+  border-radius: 20px;
+  background: linear-gradient(45deg, #c0bcca, #e4e0f0);
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+li {
+  padding: 10px;
+  border-radius: 50px;
+  background: #d5d1e0;
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+  margin-bottom: 30px;
+  font-size: 20px;
+  list-style-type: "📌";
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.remove {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #e4e0f0, #c0bcca);
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+.check {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #e4e0f0, #c0bcca);
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+.check:hover,
+.remove:hover {
+  border-radius: 50px;
+  background: #d5d1e0;
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+.check:active,
+.remove:active {
+  border-radius: 50px;
+  background: linear-gradient(45deg, #c0bcca, #e4e0f0);
+  box-shadow: 20px -20px 60px #b5b2be,
+    -20px 20px 60px #f5f0ff;
+}
+
+
+.textContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 25px;
+}
+
+.btnsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskCompleted {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+
+.taskCompleted:hover {
+  text-decoration: none;
+  color: #000;
+}
+
+.taskCompleted:active {
+  text-decoration: line-through;
+  color: #6c757d;
+}
+
+.swal-title{
+  font-size: 35px;
+}
+
+.swal-text{
+  font-size: 25px;
+}
