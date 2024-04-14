@@ -6,6 +6,9 @@
   <title>TO DO List</title>
   <script src="https://kit.fontawesome.com/cdf16c8d4e.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script src="https://unpkg.com/tippy.js@6"></script>
+
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -17,19 +20,27 @@
     <button class="addTaskBtn" onclick="newTask()"><i class="fa-solid fa-plus"></i></button>
 
     <div class="filter">
-      <button onclick="filterAll()">All</button>
-      <button onclick="filterActive()">Active</button>
-      <button onclick="filterCompleted()">Completed</button>
-      <button onclick="clearCompleted()">Clear Completed</button>
-      <button onclick="clearAll()">Clear All</button>
+      <button class="filterAll" onclick="filterAll()">All</button>
+      <button class="filterActive" onclick="filterActive()">Active</button>
+      <button class="filterCompleted" onclick="filterCompleted()">Completed</button>
+      <button class="clearCompleted" onclick="clearCompleted()">Clear Completed</button>
+      <button class="clearAll" onclick="clearAll()">Clear All</button>
       
       <!-- LocalStorage -->
-      <button onclick="save()">Save</button>
+      <button class="save" onclick="save()">Save</button>
       
     </div>
+    <div class="counters">
+      <div class="counter counterAll" >
+        <p id="counterAll"><span>0</span> 🗃️</p>
+      </div>
+      <div class="counter counterActive">
+        <p id="counterActive"><span>0</span> 📌</p>
+      </div>
+      <div class="counter counterCheck">
+        <p id="counterCheck"><span>0</span> ✔️</p>
+      </div>
     
-    <div class="counter">
-      <p id="counter">0 items left</p>
     </div>
     
     <div class="toDoContainer">

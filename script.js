@@ -3,6 +3,8 @@ const toDoList = document.querySelector("#toDoList");
 inputTODO.addEventListener("keypress", newTaskEnter);
 
 loadTasks();
+updateCounter();
+
 
 function loadTasks() {
   const tasks = JSON.parse(localStorage.getItem("tasks"));
@@ -12,6 +14,59 @@ function loadTasks() {
     }
   }
 }
+
+tippy('.addTaskBtn', {
+  content: 'Add Task',
+  inertia: true,
+});
+tippy('.filterAll', {
+  content: 'Find All Tasks',
+  inertia: true,
+});
+tippy('.filterActive', {
+  content: 'Find Not Completed Tasks',
+  inertia: true,
+});
+tippy('.filterCompleted', {
+  content: 'Find Completed Tasks',
+  inertia: true,
+});
+tippy('.clearCompleted', {
+  content: 'Delete Completed Tasks',
+  inertia: true,
+});
+tippy('.clearAll', {
+  content: 'Delete All Tasks',
+  inertia: true,
+});
+tippy('.save', {
+  content: 'Save Tasks in Local Storage',
+  inertia: true,
+});
+tippy('#counterAll', {
+  content: 'All Tasks are: ' + countAllTasks(),
+  inertia: true,
+});
+tippy('#counterActive', {
+  content: 'Not Completed Tasks are: ' + countActiveTasks(),
+  inertia: true,
+});
+tippy('#counterCheck', {
+  content: 'Completed Tasks are: ' + countCompletedTasks(),
+  inertia: true,
+});
+
+tippy('.check', {
+  content: 'Mark as Completed',
+  inertia: true,
+});
+
+tippy('.remove', {
+  content: 'Delete Task',
+  inertia: true,
+});
+
+
 
 function newTask() {
   var taskText = inputTODO.value;
@@ -179,9 +234,46 @@ function saveTasks() {
   });
   localStorage.setItem("tasks", JSON.stringify(tasksObject));
   console.log(tasksObject);
+  updateCounter();
 }
 
 function save() {
   saveTasks();
   swal("Good job!", "Tasks are saved in Local Storage!", "success");
+}
+
+
+function countAllTasks() {
+  var tasks = document.querySelectorAll("li");
+  return tasks.length;
+}
+
+function countActiveTasks() {
+  var tasks = document.querySelectorAll("li");
+  var activeTasks = 0;
+  tasks.forEach((task) => {
+    if (!task.classList.contains("taskCompleted")) {
+      activeTasks++;
+    }
+  });
+  return activeTasks;
+}
+
+function countCompletedTasks() {
+  var tasks = document.querySelectorAll("li");
+  var completedTasks = 0;
+  tasks.forEach((task) => {
+    if (task.classList.contains("taskCompleted")) {
+      completedTasks++;
+    }
+  });
+  return completedTasks;
+}
+
+
+function updateCounter() {
+  document.querySelector("#counterAll").querySelector("span").innerText = countAllTasks();
+  document.querySelector("#counterActive").querySelector("span").innerText = countActiveTasks();
+  document.querySelector("#counterCheck").querySelector("span").innerText = countCompletedTasks();
+
 }

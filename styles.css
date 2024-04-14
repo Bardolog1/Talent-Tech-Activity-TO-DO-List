@@ -205,3 +205,14 @@ li {
 .swal-text{
   font-size: 25px;
 }
+
+.counters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 25px;
+}
+
+.counters span{
+  font-weight: 600;
+}
